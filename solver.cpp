@@ -184,6 +184,19 @@ int main(int argc, char* argv[])
         return 0;
     }
 
+    int maxmoves = 100000; // Default maximum number of moves
+    for (int i = 2; i < argc; i++)
+    {
+        if (string(argv[i]) == "-m")
+        {
+            if (i + 1 < argc)
+            {
+                maxmoves = atoi(argv[i + 1]);
+                break;
+            }
+        }
+    }
+
     pieces = readpieces();
 
     /* Read board from file */
@@ -195,7 +208,6 @@ int main(int argc, char* argv[])
 
     /* Solve */
     int moves = 0;
-    int maxmoves = 100000; // quit after this number of moves (approx.)
     int maxsol = 3; // quit after this number of solutions
 
     stack<Board> boardstack;
