@@ -1,8 +1,8 @@
 # Compiles with g++ 4.2 or clang++ 3.1 (and probably some more)
 COMPILER=clang++
 
-# Eigen 3.0, http://eigen.tuxfamily.org
-EIGEN=../eigen
+# Eigen 3.4.0, http://eigen.tuxfamily.org
+EIGEN=../eigen-3.4.0
 
 COMPILE=${COMPILER} -Wall -O3 -I${EIGEN}
 
