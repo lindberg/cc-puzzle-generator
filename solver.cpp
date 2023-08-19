@@ -203,6 +203,13 @@ int main(int argc, char* argv[])
     string filename(argv[1]);
     Board startboard = readboard(filename);
 
+    try {
+        startboard = readboard(filename);
+    } catch (const std::runtime_error& e) {
+        cerr << "Error: " << e.what() << std::endl;
+        return 0;
+    }
+
     cout << endl << filename << endl << endl;
     cout << startboard << endl;
 

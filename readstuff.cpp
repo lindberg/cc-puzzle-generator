@@ -107,7 +107,8 @@ Board readboard(string filename)
         linestream >> crow;
         linestream >> ccol;
 
-        board.placePiece(pieces[pieceid][piecevar], crow, ccol);
+        if(!board.placePiece(pieces[pieceid][piecevar], crow, ccol))
+            throw std::runtime_error("Could not place the piece on the board.");
     }
 
     infile.close();
