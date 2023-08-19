@@ -201,7 +201,7 @@ int main(int argc, char* argv[])
 
     /* Read board from file */
     string filename(argv[1]);
-    Board startboard = readboard(filename);
+    Board startboard;
 
     try {
         startboard = readboard(filename);

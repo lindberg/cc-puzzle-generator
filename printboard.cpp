@@ -22,7 +22,13 @@ int main(int argc, char* argv[])
 
     /* First argument is the file name. */
     string filename(argv[1]);
-    Board board = readboard(filename);
+    Board board;
+    try {
+        board = readboard(filename);
+    } catch (const std::runtime_error& e) {
+        cerr << "Error2: " << e.what() << std::endl;
+        return 0;
+    }
 
     cout << board << endl;
 }
