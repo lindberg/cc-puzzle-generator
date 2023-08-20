@@ -1,6 +1,6 @@
 # Lonpos Cosmic Creature Puzzle Generator
 
-Welcome to the [Lonpos Cosmic Creature](https://www.lonpos.com.au/products/lonpos-cosmic-creature-cosmic-challenge) Puzzle Generator repository! This project aims to use the existing [Lonpos Cosmic Creature puzzle solver](https://github.com/johannestoger/cc-solver) into a puzzle generator, that crafts Lonpos Cosmic Creature challenges, each with a distinct and solvable solution. Lonpos Cosmic Creature is a challenging and engaging puzzle game that requires players to arrange colorful cosmic creatures within a grid, following specific rules and patterns.
+Welcome to the [Lonpos Cosmic Creature](https://www.lonpos.com.au/products/lonpos-cosmic-creature-cosmic-challenge) Puzzle Generator repository! This project aims to use the existing [Lonpos Cosmic Creature puzzle solver](https://github.com/johannestoger/cc-solver) to craft Lonpos Cosmic Creature challenges, each with a distinct and solvable solution. Lonpos Cosmic Creature is a challenging and engaging puzzle game that requires players to arrange colorful cosmic creatures within a grid, following specific rules and patterns.
 
 ![Demo puzzle solver in action](demo.png)
 
