@@ -19,6 +19,7 @@ class Board
         Board(string boardfilename = string("gamedata/board"));
 
         bool placePiece(Piece pc, int row, int col);
+        void saveSolution(string outputDir);
 
         /*
         The state of the board is stored in the array barray
@@ -38,12 +39,15 @@ class Board
         static const int cols = 20;
         static const int buffer = 8;
         Matrix<int8_t, rows+buffer, cols+buffer> barray;
+        vector<vector<Piece>> pieces;
 
         /* Keep track of which pieces we have placed. */
         bool pieceplaced[12];
 
         bool isFull(); // true if all 12 pieces are placed
         Matrix<int8_t, 4, 6> freeSpaces(); // return free spaces
+        int boardFileFormat[48];
+        int piecesOnBoard;
 };
 
 ostream& operator<<(ostream& os, const Board& p);

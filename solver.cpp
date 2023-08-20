@@ -5,12 +5,16 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <fstream>
+#include <limits>
 
 #include "Board.hpp"
 #include "Piece.hpp"
 #include "readstuff.hpp"
 
 using namespace std;
+
+static const bool GENERATE_ALL_SOLUTIONS = false;
 
 vector<vector<Piece> > pieces;
 
@@ -105,6 +109,10 @@ pair<int,int> firstfreespace(Matrix<int8_t, 4,6> &freesp)
 void solve(vector<Board>& solutions, stack<Board>& boardstack,
         int& moves, int maxmoves, int maxsol)
 {
+    if (GENERATE_ALL_SOLUTIONS) {
+        maxmoves = numeric_limits<int>::max();
+        maxsol = numeric_limits<int>::max();
+    }
     while(!boardstack.empty())
     {
         Board board = boardstack.top();
@@ -115,6 +123,10 @@ void solve(vector<Board>& solutions, stack<Board>& boardstack,
         {
             solutions.insert(solutions.end(), board);
             cout << "Solutions found: " << solutions.size() << endl;
+
+            if (GENERATE_ALL_SOLUTIONS) {
+                board.saveSolution("solutions/" + to_string(solutions.size()));
+            }
         }
 
         /* Are we done? */

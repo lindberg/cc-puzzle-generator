@@ -6,6 +6,7 @@
 
 #include "Board.hpp"
 #include "colors.hpp"
+#include "readstuff.hpp"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ const int Board::buffer;
 
 Board::Board(string boardfilename)
 {
+    Board::pieces = readpieces();
     barray.setConstant(BORDER);
 
     ifstream boardfile(boardfilename.c_str());
@@ -37,6 +39,30 @@ Board::Board(string boardfilename)
 
     for (int ii = 0; ii < 12; ii++)
         pieceplaced[ii] = false;
+
+    for (int ii = 0; ii < 48; ii++)
+        boardFileFormat[ii] = -1;
+    
+    piecesOnBoard = 0;
+}
+
+void Board::saveSolution(string outputDir) {
+    std::ofstream outFile(outputDir); // Change the file name as needed
+
+    if (outFile.is_open()) {
+        for (int i = 0; i < 48; ++i) {
+            outFile << boardFileFormat[i];
+            if ((i + 1) % 4 == 0 && i != 47) {
+                outFile << "\n";
+            } else {
+                outFile << " ";
+            }
+        }
+        outFile.close();
+        std::cout << "Data written to the file successfully." << std::endl;
+    } else {
+        std::cerr << "Unable to open the file." << std::endl;
+    }
 }
 
 bool Board::placePiece(Piece pc, int crow, int ccol)
@@ -83,6 +109,18 @@ bool Board::placePiece(Piece pc, int crow, int ccol)
         }
     }
     pieceplaced[pc.number] = true;
+
+    // Also store board in input file format
+    for (size_t i = 0; i < pieces[pc.number].size(); i++) {
+        if (pieces[pc.number][i] == pc) {
+            boardFileFormat[piecesOnBoard*4] = pc.number;
+            boardFileFormat[piecesOnBoard*4+1] = i; // piecevar
+            boardFileFormat[piecesOnBoard*4+2] = crow;
+            boardFileFormat[piecesOnBoard*4+3] = ccol;
+        }
+    }
+
+    piecesOnBoard++;
 
     return true;
 }
